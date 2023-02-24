@@ -1,8 +1,10 @@
 body {
   margin: 0;
+
   font-family: "Quicksand", sans-serif;
   color: #2b3e42;
 }
+
 /*-----HEADER-----*/
 header {
   background-color: #2b3e42;
@@ -41,28 +43,6 @@ input:hover {
   margin-left: 0.5rem;
   color: #f2583e;
   padding-right: 2px;
-}
-
-/*-----ALL SHOWS-----*/
-main > h1 {
-  color: #2b3e42;
-  text-align: center;
-  padding: 3rem;
-}
-
-.underline {
-  margin: 0 auto;
-  width: 6rem;
-  height: 0.3rem;
-  background: #2b3e42;
-}
-
-.shows-container {
-  width: 80%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
 }
 
 /* -----SINGLE SHOW-----*/
@@ -114,6 +94,60 @@ button {
 
 button:hover {
   color: #f2583e;
+}
+
+/*-----ALL SHOWS-----*/
+
+main > h1 {
+  color: #2b3e42;
+  text-align: center;
+  padding: 3rem;
+}
+
+.underline {
+  margin: 0 auto;
+  width: 6rem;
+  height: 0.3rem;
+  background: #2b3e42;
+}
+
+.shows-container {
+  width: 80%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+.btn-container {
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 70px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.pg-btn {
+  width: 2rem;
+  height: 2rem;
+  background: #2b3e42;
+  color: #f2583e;
+  text-decoration: none;
+  border-color: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.5rem;
+}
+.active-btn {
+  background: tomato;
+  color: #2b3e42;
+}
+
+.prev-btn,
+.next-btn {
+  margin: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 /*-----FOOTER-----*/

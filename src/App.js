@@ -1,29 +1,27 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 
+import { useFetchShows } from "./components/useFetchShows";
+
 import Header from "./components/Header";
 import Shows from "./components/Shows";
 import Footer from "./components/Footer";
 
-const url = "http://api.tvmaze.com/shows";
 function App() {
+  const { loading, showsData } = useFetchShows();
+
   const [shows, setShows] = useState([]);
+
+  const [page, setPage] = useState(0);
+
   const [filteredShows, setFilteredShows] = useState([]);
+
   const [search, setSearch] = useState("");
 
-  const fetchShows = async () => {
-    try {
-      const response = await fetch(url);
-      const showsData = await response.json();
-      setShows(showsData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    fetchShows();
-  }, []);
+    if (loading) return;
+    setShows(showsData[page]);
+  }, [loading, page]);
 
   useEffect(() => {
     const filteredShows = shows.filter((show) => {
@@ -37,10 +35,42 @@ function App() {
     setSearch(searchValue);
   };
 
+  const handlePage = (index) => {
+    setPage(index);
+  };
+
+  const nextPage = () => {
+    setPage((currentPage) => {
+      let nextPage = currentPage + 1;
+      if (nextPage > showsData.length - 1) {
+        nextPage = 0;
+      }
+      return nextPage;
+    });
+  };
+
+  const prevPage = () => {
+    setPage((currentPage) => {
+      let prevPage = currentPage - 1;
+      if (prevPage < 0) {
+        prevPage = showsData.length - 1;
+      }
+      return prevPage;
+    });
+  };
+
   return (
     <>
       <Header onChange={searchHandler} />
-      <Shows showList={filteredShows} />
+      <Shows
+        showList={shows}
+        filteredShows={filteredShows}
+        showsData={showsData}
+        page={page}
+        onClick={handlePage}
+        nextPage={nextPage}
+        prevPage={prevPage}
+      />
       <Footer />
     </>
   );

@@ -11,7 +11,7 @@ const SingleShow = ({ ...show }) => {
   const buttonText = moreInfo ? "show less" : "show more";
   return (
     <article>
-      <p>
+      <div>
         {moreInfo ? (
           <div className="single-show">
             <p className="description">
@@ -39,7 +39,7 @@ const SingleShow = ({ ...show }) => {
             <button onClick={onClickHandler}>{buttonText}</button>
           </div>
         )}
-      </p>
+      </div>
     </article>
   );
 };
