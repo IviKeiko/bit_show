@@ -1,12 +1,25 @@
-const paginate = (shows) => {
-  const showsPerPage = 12;
-  const pages = Math.ceil(shows.length / showsPerPage);
+import React from "react";
 
-  const showsPages = Array.from({ length: pages }, (_, index) => {
-    const start = index * showsPerPage;
-    return shows.slice(start, start + showsPerPage);
-  });
-  return showsPages;
+const Pagination = ({ showsPerPage, totalShows, paginate, currentPage }) => {
+  const pageNumbers = [];
+
+  for (let i = 1; i <= Math.ceil(totalShows / showsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <div className="btn-container">
+      {pageNumbers.map((number) => (
+        <button
+          key={number}
+          className={`pg-btn ${currentPage === number ? "active-btn" : null}`}
+          onClick={() => paginate(number)}
+        >
+          {number}
+        </button>
+      ))}
+    </div>
+  );
 };
 
-export default paginate;
+export default Pagination;
