@@ -1,6 +1,8 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 
+// import { useFetchShows } from "./components/useFetchShows";
+
 import Header from "./components/Header";
 import Shows from "./components/Shows";
 import Footer from "./components/Footer";
@@ -20,7 +22,7 @@ function App() {
   useEffect(() => {
     const fetchShows = async () => {
       setLoading(true);
-      const response = await fetch("http://api.tvmaze.com/shows");
+      const response = await fetch("https://api.tvmaze.com/shows");
       const showsData = await response.json();
       setDefaultShows(showsData);
       setShows(showsData);
