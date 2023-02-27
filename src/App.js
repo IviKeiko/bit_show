@@ -16,7 +16,6 @@ function App() {
   const [showsPerPage, setShowsPerPage] = useState(12);
 
   const [search, setSearch] = useState("");
-  const [filteredShows, setFilteredShows] = useState([]);
 
   //FETCH SHOWS
   useEffect(() => {
@@ -44,7 +43,15 @@ function App() {
     const filteredShows = defaultShows.filter((show) => {
       return show.name.toLowerCase().includes(search);
     });
-    setShows(filteredShows); // ??
+
+    setCurrentPage(1);
+
+    if (search.length === 0) {
+      setShows(defaultShows);
+      console.log(defaultShows);
+    } else {
+      setShows(filteredShows);
+    }
   }, [search]);
 
   const searchHandler = (e) => {
